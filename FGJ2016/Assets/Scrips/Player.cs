@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
 
 	Animator anim ;
 	public float Speed;
+	public float Jemp;
 
 	private EventHandler _turnSoil ;
 	private EventHandler _watering ;
@@ -31,7 +32,12 @@ public class Player : MonoBehaviour {
 
 		float input_x = Input.GetAxis ("Horizontal")*Speed;
 		this.OnMove (input_x );
-			
+
+		if (Input.GetKey(KeyCode.Space)	)		
+		{
+			transform.GetComponent<Rigidbody2D> ().AddForce (new Vector2( 0 , Jemp ),ForceMode2D.Impulse);
+		}
+			  //  .GetComponent<Rigidbody2D>()  (new Vector2(0, 54f));
 	}
 		
 	private void OnMove(float input_x ){
