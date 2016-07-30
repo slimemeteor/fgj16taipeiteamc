@@ -25,6 +25,9 @@ public class Player : MonoBehaviour {
 	public event EventHandler Watering { add {	_watering += value; } remove { _watering -= value; } } 
 	public event EventHandler Farming { add { _farming += value; } remove { _farming -= value; } }
 
+
+
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
@@ -38,18 +41,24 @@ public class Player : MonoBehaviour {
 
 		float input_x = Input.GetAxis ("Horizontal")*Speed;
 		this.OnMove (input_x );
+		this.OnJump();			
+	}
+		
+	private void OnJump(){
+		if (JumpTime >= JumpTimeMax)
+			return;
 
-		if (Input.GetKeyDown(KeyCode.Space) && JumpTime < JumpTimeMax )		
+		if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) )		
 		{
-			
+
 			var jumpY = Jump-(JumpTime*3f);
 			_rigidbody2D.velocity = Vector2.zero;
 			_rigidbody2D.AddForce (new Vector2( 0 , jumpY ),ForceMode2D.Impulse);
 
 			JumpTime += 1;
-		}			
+		}	
 	}
-		
+
 	private void OnMove(float input_x ){
 		
 		bool isWalking = Mathf.Abs (input_x) > 0; 
