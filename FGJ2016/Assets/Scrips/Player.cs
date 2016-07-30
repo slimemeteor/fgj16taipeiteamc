@@ -71,6 +71,13 @@ public class Player : MonoBehaviour {
 			anim.SetFloat ("x", input_x);
 			transform.position += new Vector3 (input_x, 0 , 0)* Time.deltaTime;
 		}
+
+		if (input_x < 0) {
+			transform.localRotation = Quaternion.Euler (0, 180, 0);
+		}
+		if (input_x > 0 ){
+			transform.localRotation = Quaternion.Euler(0,0,0);
+		}
 	}
 
 	void OnCollisionStay2D(Collision2D coll) {
