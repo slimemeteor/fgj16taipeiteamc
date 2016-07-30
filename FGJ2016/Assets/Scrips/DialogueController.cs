@@ -19,7 +19,7 @@ public class DialogueController : MonoBehaviour {
 	public void SetDialogueUI(Transform uiPos , string dialogueContent)
 	{
 		DialogueUI.transform.SetParent(uiPos);
-		DialogueUI.transform.localPosition = new Vector3(0,0,26) ;
+		DialogueUI.transform.localPosition = new Vector3(0,2,0) ;
 		DialogueUI.GetComponent<Dialogue>().SetDialogueContent(dialogueContent);
 		DialogueUI.SetActive(true);
 	}
