@@ -3,18 +3,20 @@ using System.Collections;
 
 public class FollowPlayer: MonoBehaviour {
 
-	public GameObject player;
+	private GameObject player;
 
 	// Use this for initialization
 	void Start () {
-	
+		player = GameObject.Find("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = Vector3.Slerp(transform.position, player.transform.position, 0.005f);
+		var oPos = transform.position;
 
-		Vector3 moveDirection = gameObject.transform.position - player.transform.position; 
+//		transform.position = oPos.x
+
+//		Vector3 moveDirection = gameObject.transform.position - player.transform.position; 
 
 	}
 }

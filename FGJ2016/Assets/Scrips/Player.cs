@@ -13,6 +13,8 @@ public class Player : MonoBehaviour {
 	public float Speed;
 	public float Jump;
 	public int JumpTimeMax = 2;
+	public float LeftStopX ;
+
 
 	private int JumpTime = 0;
 	private Rigidbody2D _rigidbody2D;
@@ -65,6 +67,8 @@ public class Player : MonoBehaviour {
 
 		float input_x = Input.GetAxis ("Horizontal")*Speed;
 
+		if (transform.position.x < LeftStopX)
+			input_x = 0;
 
 		bool isRun = Mathf.Abs (input_x) > 0; 
 		anim.SetBool ("isRun", isRun);
