@@ -19,9 +19,14 @@ public class DialogueController : MonoBehaviour {
 	public void SetDialogueUI(Transform uiPos , string dialogueContent)
 	{
 		DialogueUI.transform.SetParent(uiPos);
-		DialogueUI.transform.localPosition = Vector3.zero ;
+		DialogueUI.transform.localPosition = new Vector3(0,0,26) ;
 		DialogueUI.GetComponent<Dialogue>().SetDialogueContent(dialogueContent);
 		DialogueUI.SetActive(true);
 	}
 
+	public bool DialogueIsOpened()
+	{
+		if(DialogueUI.activeInHierarchy) 	return true ;
+		else 								return false ;
+	}
 }
