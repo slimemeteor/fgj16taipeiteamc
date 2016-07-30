@@ -39,8 +39,8 @@ public class Player : MonoBehaviour {
 		var pos = transform.position;
 
 
-		float input_x = Input.GetAxis ("Horizontal")*Speed;
-		this.OnMove (input_x );
+
+		this.OnMove();
 		this.OnJump();			
 	}
 		
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour {
 		if (JumpTime >= JumpTimeMax)
 			return;
 
-		if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) )		
+		if (Input.GetKeyDown(KeyCode.Space))		
 		{
 
 			var jumpY = Jump-(JumpTime*3f);
@@ -59,8 +59,11 @@ public class Player : MonoBehaviour {
 		}	
 	}
 
-	private void OnMove(float input_x ){
-		
+	private void OnMove(){
+
+		float input_x = Input.GetAxis ("Horizontal")*Speed;
+
+
 		bool isWalking = Mathf.Abs (input_x) > 0; 
 		anim.SetBool ("isWalking", isWalking);
 
