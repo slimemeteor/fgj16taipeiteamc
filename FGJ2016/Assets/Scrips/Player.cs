@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
 
 	private int JumpTime = 0;
 	private Rigidbody2D _rigidbody2D;
+	private bool IsLock = false;
 
 
 	private EventHandler _turnSoil ;
@@ -38,7 +39,8 @@ public class Player : MonoBehaviour {
 	void Update () {
 		var pos = transform.position;
 
-
+		if (IsLock)
+			return;
 
 		this.OnMove();
 		this.OnJump();			
@@ -64,10 +66,10 @@ public class Player : MonoBehaviour {
 		float input_x = Input.GetAxis ("Horizontal")*Speed;
 
 
-		bool isWalking = Mathf.Abs (input_x) > 0; 
-		anim.SetBool ("isWalking", isWalking);
+		bool isRun = Mathf.Abs (input_x) > 0; 
+		anim.SetBool ("isRun", isRun);
 
-		if (isWalking) {
+		if (isRun) {
 			anim.SetFloat ("x", input_x);
 			transform.position += new Vector3 (input_x, 0 , 0)* Time.deltaTime;
 		}
@@ -78,6 +80,16 @@ public class Player : MonoBehaviour {
 		if (input_x > 0 ){
 			transform.localRotation = Quaternion.Euler(0,0,0);
 		}
+	}
+
+	public void Lock()
+	{
+		IsLock = true;
+	}
+
+	public void UnLock()
+	{
+		IsLock = false;
 	}
 
 	void OnCollisionStay2D(Collision2D coll) {
