@@ -5,8 +5,14 @@ using UnityEngine.UI;
 public class Dialogue : MonoBehaviour {
 
 	public Text DialogueText ;
+	public Text ItemNameText ;
+	public Image ItemImage ;
 	public string DialogueContent ;
 	public bool StartDialogue = false ;
+	private TheaterScripts _scriptContent;
+	private int 		  ContentIndex ;
+	private bool 		  DialogueInit = false ;
+
 
 	#region _text_display_control_
 	private string m_message_text;
@@ -36,6 +42,23 @@ public class Dialogue : MonoBehaviour {
 	{
 		if(StartDialogue)
 		{
+
+			if(!DialogueInit)
+			{
+				if(_scriptContent.ItemName != null)	ItemNameText.text = _scriptContent.ItemName ;
+				else    							ItemNameText.text = "";
+
+				if(_scriptContent.scriptItem != null) 
+				{
+					ItemImage.sprite = _scriptContent.scriptItem;
+					ItemImage.gameObject.SetActive(true);
+				}
+				else ItemImage.gameObject.SetActive(false);
+
+				DialogueInit = true ;
+				DialogueController.Instance.enablePlayer(false);
+			}
+
 			if (!m_message_end) {
 				--m_message_delay;
 				if (m_message_delay > 0) {
@@ -52,23 +75,60 @@ public class Dialogue : MonoBehaviour {
 			}
 
 			DialogueText.text = DialogueContent ;
-			StartDialogue = false ;
+			//StartDialogue = false ;
+
+			if(Input.GetMouseButtonDown(0))
+			{
+				NextContent();
+			}
 		}
 	}
 
-	public void SetDialogueContent(string content)
+//	public void SetDialogueContent(string content)
+//	{
+//		DialogueContent = content ;
+//		StartDialogue = true ;
+//
+//		ResetText();
+//		ResetDelay();
+//
+//	}
+
+	public void SetDialogueContent(TheaterScripts content)
 	{
-		DialogueContent = content ;
-		StartDialogue = true ;
+		_scriptContent = content ;
+		if(content.scriptContent.Length > 0) 
+		{
+			StartDialogue = true ;
+			DialogueContent = _scriptContent.scriptContent[ContentIndex] ;
+			ResetText();
+			ResetDelay();
+		}
+	}
 
-		ResetText();
-		ResetDelay();
-
+	public void NextContent()
+	{
+		if((ContentIndex + 1) < _scriptContent.scriptContent.Length )
+		{
+			ContentIndex ++ ;
+			DialogueContent = _scriptContent.scriptContent[ContentIndex] ;
+			ResetText();
+			ResetDelay();
+		}
+		else
+		{
+			CloseDialogueUI();
+		}
 	}
 
 	public void CloseDialogueUI()
 	{
-		DialogueText.text = DialogueContent = "" ;
+		DialogueText.text = "";
+		ContentIndex = 0;
+		_scriptContent = null ;
+		DialogueInit = false ;
+		StartDialogue = false ;
+		DialogueController.Instance.enablePlayer(true);
 		this.gameObject.SetActive(false);
 	}
 

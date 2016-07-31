@@ -16,14 +16,27 @@ public class DialogueController : MonoBehaviour {
 
 	public GameObject DialogueUI;
 
-	public void SetDialogueUI(Transform uiPos , string dialogueContent)
+	private Player _player ;
+
+	void Start()
 	{
-		DialogueUI.transform.SetParent(uiPos);
-		DialogueUI.transform.localPosition = new Vector3(0,2,0) ;
-		DialogueUI.GetComponent<Dialogue>().SetDialogueContent(dialogueContent);
-		DialogueUI.SetActive(true);
+		_player = GameObject.Find("Player").GetComponent<Player>();
 	}
 
+	public void enablePlayer(bool enable)
+	{
+		if(enable) 	_player.UnLock();
+		else 		_player.Lock();
+	}
+
+	public void SetDialogueUI(TheaterScripts theaterScript)
+	{
+//		DialogueUI.transform.SetParent(uiPos);
+//		DialogueUI.transform.localPosition = new Vector3(0,2,0) ;
+		DialogueUI.GetComponent<Dialogue>().SetDialogueContent(theaterScript);
+		DialogueUI.SetActive(true);
+	}
+		
 	public bool DialogueIsOpened()
 	{
 		if(DialogueUI.activeInHierarchy) 	return true ;

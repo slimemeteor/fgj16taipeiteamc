@@ -9,6 +9,7 @@ public class ItemEvent : MonoBehaviour {
 
 	public  float		TriggerDistance = 10f;
 	public  string 		DialogueContent ;
+	public  int 		TheaterIndex ;
 
 	void Start () 
 	{
@@ -45,7 +46,7 @@ public class ItemEvent : MonoBehaviour {
 
 	void CallDialogueController()
 	{
-		DialogueController.Instance.SetDialogueUI(this.gameObject.transform , DialogueContent);
+		DialogueController.Instance.SetDialogueUI(Theater.Instance.getTheaterScript(TheaterIndex));
 		Triggered = true ;
 	}
 }

@@ -8,7 +8,7 @@ public class TestDialogueUI : MonoBehaviour {
 
 	void Start () 
 	{	
-		DialogueController.Instance.SetDialogueUI(Target.transform , Content);
+		//DialogueController.Instance.SetDialogueUI(Target.transform , Content);
 	}
 
 	void Update () {
