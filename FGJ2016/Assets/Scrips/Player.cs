@@ -12,8 +12,8 @@ public class Player : MonoBehaviour {
 	Animator anim ;
 	public float Speed;
 	public float Jump;
-	public int JumpTimeMax = 2;
-	public float LeftStopX ;
+	public int JumpTimeMax = 10;
+	public float LeftStopX = -6f , RightStopX = 100f;
 
 
 	private int JumpTime = 0;
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour {
 
 			anim.SetBool ("isRun", false);
 			anim.SetBool ("isJump", true);
-
+			transform.GetComponent<AudioSource> ().Play ();
 
 			JumpTime += 1;
 		}	
@@ -73,6 +73,9 @@ public class Player : MonoBehaviour {
 
 		if (transform.position.x < LeftStopX && input_x < 0 )
 			input_x = 0;
+
+		if (transform.position.x > RightStopX)
+			input_x = RightStopX;
 
 		bool isRun = Mathf.Abs (input_x) > 0; 
 		anim.SetBool ("isRun", isRun);
