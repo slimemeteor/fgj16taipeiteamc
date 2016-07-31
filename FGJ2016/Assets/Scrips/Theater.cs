@@ -86,7 +86,7 @@ public class Theater : MonoBehaviour
 
 			string image_name = elem[5];
 			if (!string.IsNullOrEmpty(image_name)) {
-				tempdata.scriptItem = Resources.Load<Sprite>(image_name);
+				tempdata.scriptItem = Resources.Load<Sprite>(image_name.Replace("\r", ""));
 			}
 
 			all_theater.Add(theater_id, tempdata);
