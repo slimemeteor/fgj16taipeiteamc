@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 guid: 8900dfc944f84431ea2a054d28c4a4de
-timeCreated: 1469879928
+timeCreated: 1469885694
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: d_3_0
+    21300002: d_3_1
+    21300004: d_3_2
+    21300006: d_3_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -49,7 +53,67 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: d_3_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 557
+        width: 350
+        height: 454
+      alignment: 9
+      pivot: {x: 0.9921863, y: 0.99801326}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -284.37402, y: 1.5749207}
+        - {x: -284.37402, y: -371.42508}
+        - {x: 3.6259766, y: -371.42508}
+        - {x: 3.6259766, y: 1.5749207}
+    - name: d_3_1
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 550
+        width: 350
+        height: 454
+      alignment: 9
+      pivot: {x: 0.9921863, y: 0.99801326}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -284.80124, y: 1.8404541}
+        - {x: -284.80124, y: -371.15955}
+        - {x: 3.198761, y: -371.15955}
+        - {x: 3.198761, y: 1.8404541}
+    - name: d_3_2
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 532
+        width: 350
+        height: 454
+      alignment: 9
+      pivot: {x: 0.9921863, y: 0.99801326}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -284.4917, y: 2.0948486}
+        - {x: -284.4917, y: -370.90515}
+        - {x: 2.5083008, y: -370.90515}
+        - {x: 2.5083008, y: 2.0948486}
+    - name: d_3_3
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 487
+        width: 350
+        height: 454
+      alignment: 9
+      pivot: {x: 0.9921863, y: 0.99801326}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -284.35803, y: 2.230835}
+        - {x: -284.35803, y: -370.76917}
+        - {x: 3.6419678, y: -370.76917}
+        - {x: 3.6419678, y: 2.230835}
     outline: []
   spritePackingTag: 
   userData: 
