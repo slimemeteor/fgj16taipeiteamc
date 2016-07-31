@@ -8,12 +8,13 @@ public class ItemEvent : MonoBehaviour {
 	private bool		Triggered  = false ; 
 
 	public  float		TriggerDistance = 10f;
-	public  string 		DialogueContent ;
+	//public  string 		DialogueContent ;
 	public  int 		TheaterIndex ;
 
 	void Start () 
 	{
 		Player = GameObject.Find("Player");
+		EventNoticeUI.Instance.Init();
 	}
 
 	void Update () 
@@ -23,28 +24,35 @@ public class ItemEvent : MonoBehaviour {
 		if(DistanceWithPlayer < TriggerDistance)
 		{
 			//Do SomeThing
+			EventNoticeUI.Instance.setNoticeUI(this.transform , this , DistanceWithPlayer);
 		
 		}
-		else Triggered  = false ;
-	}
-
-	void OnTriggerEnter2D(Collider2D other) 
-	{
-		if(other.name == "Player")
+		else
 		{
-			if(!DialogueController.Instance.DialogueIsOpened() && !Triggered) CallDialogueController();
+			if(Triggered)
+			EventNoticeUI.Instance.reset();
+
+			Triggered  = false ;
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D coll) 
-	{
-		if(coll.gameObject.name == "Player")
-		{
-			if(!DialogueController.Instance.DialogueIsOpened() && !Triggered) CallDialogueController();
-		}
-	}
+//	void OnTriggerEnter2D(Collider2D other) 
+//	{
+//		if(other.name == "Player")
+//		{
+//			if(!DialogueController.Instance.DialogueIsOpened() && !Triggered) CallDialogueController();
+//		}
+//	}
+//
+//	void OnCollisionEnter2D(Collision2D coll) 
+//	{
+//		if(coll.gameObject.name == "Player")
+//		{
+//			if(!DialogueController.Instance.DialogueIsOpened() && !Triggered) CallDialogueController();
+//		}
+//	}
 
-	void CallDialogueController()
+	public void CallDialogueController()
 	{
 		DialogueController.Instance.SetDialogueUI(Theater.Instance.getTheaterScript(TheaterIndex));
 		Triggered = true ;
