@@ -10,6 +10,7 @@ public class ItemEvent : MonoBehaviour {
 	public  float		TriggerDistance = 10f;
 	//public  string 		DialogueContent ;
 	public  int 		TheaterIndex ;
+	bool    haveSend    = false ;
 
 	void Start () 
 	{
@@ -25,14 +26,15 @@ public class ItemEvent : MonoBehaviour {
 		{
 			//Do SomeThing
 			EventNoticeUI.Instance.setNoticeUI(this.transform , this , DistanceWithPlayer);
-		
+			haveSend = true ;
 		}
 		else
 		{
-			if(Triggered)
+			if(Triggered || haveSend)
 			EventNoticeUI.Instance.reset();
 
 			Triggered  = false ;
+			haveSend = false ;
 		}
 	}
 
