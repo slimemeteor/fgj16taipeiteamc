@@ -28,7 +28,7 @@ public class Dialogue : MonoBehaviour {
 			m_text_per_second = 10; // 15) very fast 10) fast 6) normal 5) slow 3) very slow.
 		}
 		m_message_delay = Mathf.RoundToInt(m_frames_per_second / m_text_per_second);
-		Debug.Log("Message delay = " + m_message_delay + ", Speed = " + m_text_per_second);
+		//Debug.Log("Message delay = " + m_message_delay + ", Speed = " + m_text_per_second);
 	}
 	private void ResetText()
 	{
@@ -97,7 +97,7 @@ public class Dialogue : MonoBehaviour {
 	public void SetDialogueContent(TheaterScripts content)
 	{
 		_scriptContent = content ;
-		if(content.scriptContent.Length > 0) 
+		if(content.scriptContent.Count > 0) 
 		{
 			StartDialogue = true ;
 			DialogueContent = _scriptContent.scriptContent[ContentIndex] ;
@@ -108,7 +108,7 @@ public class Dialogue : MonoBehaviour {
 
 	public void NextContent()
 	{
-		if((ContentIndex + 1) < _scriptContent.scriptContent.Length )
+		if((ContentIndex + 1) < _scriptContent.scriptContent.Count )
 		{
 			ContentIndex ++ ;
 			DialogueContent = _scriptContent.scriptContent[ContentIndex] ;
@@ -130,6 +130,7 @@ public class Dialogue : MonoBehaviour {
 		StartDialogue = false ;
 		DialogueController.Instance.enablePlayer(true);
 		this.gameObject.SetActive(false);
+		EventNoticeUI.Instance.reset();
 	}
 
 }

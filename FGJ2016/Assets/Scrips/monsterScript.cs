@@ -3,7 +3,7 @@ using System.Collections;
 
 public class monsterScript : MonoBehaviour {
 
-	public float Speed;
+	public float Speed = 1;
 	private float time; //宣告浮點數，名稱time
 	private float input_x = 0f;
 
@@ -21,13 +21,14 @@ public class monsterScript : MonoBehaviour {
 			input_x = Random.Range (-6f, 6f);
 		}
 
-		transform.position += new Vector3 (input_x, 0 , 0).normalized * Time.deltaTime;
+		transform.position += new Vector3 (input_x , 0 , 0).normalized * Time.deltaTime* Speed;
 
+		var rotationZ = transform.rotation.eulerAngles.z;
 		if (input_x < 0) {
-			transform.localRotation = Quaternion.Euler (0, 180, 0);
+			transform.localRotation = Quaternion.Euler (0, 180, rotationZ );
 		}
 		if (input_x > 0 ){
-			transform.localRotation = Quaternion.Euler(0,0,0);
+			transform.localRotation = Quaternion.Euler(0,0,rotationZ );
 		}
 
 	}
