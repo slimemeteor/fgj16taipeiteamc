@@ -11,6 +11,8 @@ public class ItemEvent : MonoBehaviour {
 	//public  string 		DialogueContent ;
 	public  int 		TheaterIndex ;
 	bool    haveSend    = false ;
+	public  bool havePoint = false ;
+	public  bool PointHadSend = false ;
 
 	void Start () 
 	{
@@ -58,5 +60,10 @@ public class ItemEvent : MonoBehaviour {
 	{
 		DialogueController.Instance.SetDialogueUI(Theater.Instance.getTheaterScript(TheaterIndex));
 		Triggered = true ;
+		if(havePoint && !PointHadSend)
+		{
+			Point.addPoint();
+			PointHadSend = true ;
+		}
 	}
 }
