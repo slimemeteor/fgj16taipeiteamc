@@ -7,6 +7,8 @@ class PlayerTouchEventArg : EventArgs
 	
 }
 
+public enum Fragment { ZOER , ONE, TWO , THREE , FOUR , FIVE };
+
 public class Player : MonoBehaviour {
 
 	Animator anim ;
@@ -15,6 +17,11 @@ public class Player : MonoBehaviour {
 	public int JumpTimeMax = 10;
 	public float LeftStopX = -6f , RightStopX = 100f;
 
+	private bool FragmentOne = false;
+	private bool FragmentTWO = false;
+	private bool FragmentTHREE = false;
+	private bool FragmentFOUR = false;
+	private bool FragmentFIVE = false;
 
 	private int JumpTime = 0;
 	private Rigidbody2D _rigidbody2D;
@@ -27,7 +34,6 @@ public class Player : MonoBehaviour {
 	public event EventHandler TurnSoil { add {	_turnSoil += value; } remove { _turnSoil -= value; } }
 	public event EventHandler Watering { add {	_watering += value; } remove { _watering -= value; } } 
 	public event EventHandler Farming { add { _farming += value; } remove { _farming -= value; } }
-
 
 
 
@@ -101,6 +107,29 @@ public class Player : MonoBehaviour {
 	public void UnLock()
 	{
 		IsLock = false;
+	}
+
+	public void AddFragment( Fragment f ){
+		if (f == Fragment.ONE)
+			FragmentOne = true;
+		else if ( f == Fragment.TWO)
+			FragmentTWO = true;
+		else if ( f == Fragment.THREE)
+			FragmentTHREE = true;
+		else if ( f == Fragment.FOUR)
+			FragmentFOUR = true;
+		else if ( f == Fragment.FIVE)
+			FragmentFIVE = true;
+	}
+
+	public bool CheckGameOver()
+	{
+		if ( FragmentOne && FragmentTWO && FragmentTHREE && FragmentFOUR && FragmentFIVE )
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	void OnCollisionStay2D(Collision2D coll) {
