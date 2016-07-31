@@ -74,8 +74,8 @@ public class Player : MonoBehaviour {
 		if (transform.position.x < LeftStopX && input_x < 0 )
 			input_x = 0;
 
-		if (transform.position.x > RightStopX)
-			input_x = RightStopX;
+		if (transform.position.x > RightStopX && input_x > 0 )
+			input_x = 0;
 
 		bool isRun = Mathf.Abs (input_x) > 0; 
 		anim.SetBool ("isRun", isRun);
