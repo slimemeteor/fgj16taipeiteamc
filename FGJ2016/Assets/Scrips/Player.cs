@@ -67,7 +67,7 @@ public class Player : MonoBehaviour {
 
 		float input_x = Input.GetAxis ("Horizontal")*Speed;
 
-		if (transform.position.x < LeftStopX)
+		if (transform.position.x < LeftStopX && input_x < 0 )
 			input_x = 0;
 
 		bool isRun = Mathf.Abs (input_x) > 0; 

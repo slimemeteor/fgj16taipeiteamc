@@ -3,6 +3,7 @@ using System.Collections;
 
 public class monsterScript : MonoBehaviour {
 
+	public float Speed;
 	private float time; //宣告浮點數，名稱time
 	private float input_x = 0f;
 
@@ -17,7 +18,7 @@ public class monsterScript : MonoBehaviour {
 		if (time > Random.Range( 0.5f,5.5f)) 
 		{
 			time = 0;
-			input_x = Random.Range (-1f, 1f);
+			input_x = Random.Range (-6f, 6f);
 		}
 
 		transform.position += new Vector3 (input_x, 0 , 0).normalized * Time.deltaTime;
