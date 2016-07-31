@@ -59,6 +59,10 @@ public class Player : MonoBehaviour {
 			_rigidbody2D.velocity = Vector2.zero;
 			_rigidbody2D.AddForce (new Vector2( 0 , jumpY ),ForceMode2D.Impulse);
 
+			anim.SetBool ("isRun", false);
+			anim.SetBool ("isJump", true);
+
+
 			JumpTime += 1;
 		}	
 	}
@@ -99,6 +103,7 @@ public class Player : MonoBehaviour {
 	void OnCollisionStay2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Floor") {
 			JumpTime = 0;
+			anim.SetBool ("isJump", false);
 		}
 	}
 }
