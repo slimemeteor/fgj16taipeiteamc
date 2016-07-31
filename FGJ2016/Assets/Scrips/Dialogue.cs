@@ -130,6 +130,7 @@ public class Dialogue : MonoBehaviour {
 		StartDialogue = false ;
 		DialogueController.Instance.enablePlayer(true);
 		this.gameObject.SetActive(false);
+		EventNoticeUI.Instance.reset();
 	}
 
 }
